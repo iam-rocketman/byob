@@ -1,46 +1,42 @@
-<img src="https://raw.githubusercontent.com/malwaredllc/byob/master/byob/static/byob_logo_email-black.png" width="400px"></img>
-# Build Your Own Botnet [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=BYOB%20(Build%20Your%20Own%20Botnet)&url=https://github.com/malwaredllc/byob&via=malwaredllc&hashtags=botnet,python,infosec,github)
+![Banner](https://github.com/malwaredllc/byob/blob/master/byob/static/byob_logo_black.svg)
+
 [![license](https://img.shields.io/badge/license-GPL-brightgreen.svg)](https://github.com/malwaredllc/byob/blob/master/LICENSE)
-[![version](https://img.shields.io/badge/version-0.6-lightgrey.svg)](https://github.com/malwaredllc/byob)
-[![build](https://img.shields.io/travis/com/malwaredllc/byob/master.svg)](https://travis-ci.com/malwaredllc/byob.svg?branch=master)
+[![version](https://img.shields.io/badge/version-2.0-blue.svg)](https://github.com/malwaredllc/byob)
+![build](https://github.com/malwaredllc/byob/workflows/build/badge.svg)
+[![Coverage Status](https://coveralls.io/repos/github/malwaredllc/byob/badge.svg)](https://coveralls.io/github/malwaredllc/byob)
+<img alt="Discord" src="https://img.shields.io/discord/709150520446550097"/>
+[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=BYOB%20(Post-Exploitation%20Framework)&url=https://github.com/malwaredllc/byob&via=malwaredllc&hashtags=byob,python,security,github)
 
-
-[Getting Started Guide](https://buildyourownbotnet.com/guide)
-
-[Video Tutorial](https://www.youtube.com/watch?v=XCI9tcDVOMc)
-
-Questions? [Join our Discord server](https://discord.gg/8FsSrw7)
+Questions? [Join the Discord support server](https://discord.gg/8FsSrw7)
 
 __Disclaimer__: This project should be used for authorized testing or educational purposes only.
 
-BYOB is an open-source project that provides a framework for security researchers and developers 
-to build and operate a basic botnet to deepen their understanding of the sophisticated malware 
-that infects millions of devices every year and spawns modern botnets, in order to improve their 
-ability to develop counter-measures against these threats. 
+BYOB is an open-source post-exploitation framework for students, researchers and developers. It includes features such as:
+- Command & control server with intuitive user-interface
+- Custom payload generator for multiple platforms
+- 12 post-exploitation modules
 
-It is designed to allow developers to easily implement their own code and add cool new
-features *without* having to write a **RAT** (Remote Administration Tool) or a
-**C2** (Command & Control server) from scratch.
-
-*The RAT's key feature is that arbitrary code/files can be remotely loaded into memory
-from the C2 and executed on the target machine without writing anything to the disk.*
+It is designed to allow students and developers to easily implement their own code and add cool new
+features *without* having to write a C2 server or Remote Administration Tool from scratch.
 
 This project has 2 main parts: the **original console-based application** (`/byob`) and the **web GUI** (`/web-gui`).
 
 # Web GUI
 
 ## Dashboard
-A control panel for your C2 server with a point-and-click interface for executing post-exploitation modules across your botnet. The dashboard includes a map of your bots across the globe, and hashrate trackers & graphs for those of you mining Monero.
+A control panel for your C2 server with a point-and-click interface for executing post-exploitation modules. The control panel includes an interactive map of client machines and a dashboard which allows efficient, intuitive administration of client machines.
+
 ![dashboard_preview](https://github.com/malwaredllc/byob/blob/master/web-gui/buildyourownbotnet/assets/images/previews/preview-dashboard.png)
 
 ## Payload Generator
-The payload generator uses black magic involving Docker containers & Wine servers to compile executable payloads for any platform/architecture you select.
-![payload_generator_preview](https://github.com/malwaredllc/byob/blob/master/web-gui/buildyourownbotnet/assets/images/previews/preview-payloads2.png)
+The payload generator uses black magic involving Docker containers & Wine servers to compile executable payloads for any platform/architecture you select. These payloads spawn reverse TCP shells with communication over the network encrypted via AES-256 after generating a secure symmetric key using the [Diffie-Hellman IKE](https://tools.ietf.org/html/rfc2409).
+
+![payloads_preview](https://github.com/malwaredllc/byob/blob/master/web-gui/buildyourownbotnet/assets/images/previews/preview-payloads2.png)
 
 ## Terminal Emulator
-The web app includes an in-browser terminal emulator so you can still have direct shell access even when using the GUI
-![shell_preview](https://github.com/malwaredllc/byob/blob/master/web-gui/buildyourownbotnet/assets/images/previews/preview-shell2.png)
+The web app includes an in-browser terminal emulator so you can still have direct shell access even when using the web GUI.
 
+![terminal_preview](https://github.com/malwaredllc/byob/blob/master/web-gui/buildyourownbotnet/assets/images/previews/preview-shell.png)
 
 # Console Application
 
@@ -86,20 +82,17 @@ in the payload stager which is generated along with it
 
 *Post-exploitation modules that are remotely importable by clients*
 
-1) __Keylogger__ (`byob.modules.keylogger`): logs the user’s keystrokes & the window name entered
-2) __Screenshot__ (`byob.modules.screenshot`): take a screenshot of current user’s desktop
-3) __Webcam__ (`byob.modules.webcam`): view a live stream or capture image/video from the webcam
-4) __Ransom__ (`byob.modules.ransom`): encrypt files & generate random BTC wallet for ransom payment
-5) __Outlook__ (`byob.modules.outlook`): read/search/upload emails from the local Outlook client
-6) __Packet Sniffer__ (`byob.modules.packetsniffer`): run a packet sniffer on the host network & upload .pcap file
-7) __Persistence__ (`byob.modules.persistence`): establish persistence on the host machine using 5 different methods
-8) __Phone__ (`byob.modules.phone`): read/search/upload text messages from the client smartphone
-9) __Escalate Privileges__ (`byob.modules.escalate`): attempt UAC bypass to gain unauthorized administrator privileges
-10) __Port Scanner__ (`byob.modules.portscanner`): scan the local network for other online devices & open ports
-11) __Process Control__ (`byob.modules.process`): list/search/kill/monitor currently running processes on the host
-12) __iCloud__ (`byob.modules.icloud`): check for logged in iCloud account on macOS
-13) __Spreader__ (`byob.modules.spreader`): spread client to other hosts via emails disguised as a plugin update
-14) __Miner__ (`byob.core.miner`): mine Monero in the background using the built-in miner or XMRig
+1) __Persistence__ (`byob.modules.persistence`): establish persistence on the host machine using 5 different methods
+2) __Packet Sniffer__ (`byob.modules.packetsniffer`): run a packet sniffer on the host network & upload .pcap file
+3) __Escalate Privileges__ (`byob.modules.escalate`): attempt UAC bypass to gain unauthorized administrator privileges
+4) __Port Scanner__ (`byob.modules.portscanner`): scan the local network for other online devices & open ports
+5) __Keylogger__ (`byob.modules.keylogger`): logs the user’s keystrokes & the window name entered
+6) __Screenshot__ (`byob.modules.screenshot`): take a screenshot of current user’s desktop
+7) __Webcam__ (`byob.modules.webcam`): view a live stream or capture image/video from the webcam
+8) __Outlook__ (`byob.modules.outlook`): read/search/upload emails from the local Outlook client
+9) __Process Control__ (`byob.modules.process`): list/search/kill/monitor currently running processes on the host
+10) __iCloud__ (`byob.modules.icloud`): check for logged in iCloud account on macOS
+11) __Miner__ (`byob.core.miner`): mine Monero in the background using the built-in miner or XMRig
 
 ## Server
 [![server](https://img.shields.io/badge/byob-server-blue.svg)](https://github.com/malwaredllc/byob/blob/master/byob/server.py)
@@ -126,7 +119,7 @@ packages not installed on the target machines
 4) __Payloads__ (`byob.core.payloads`): reverse TCP shell designed to remotely import dependencies, packages & modules
 5) __Stagers__ (`byob.core.stagers`): generate unique payload stagers to prevent analysis & detection   
 6) __Generators__ (`byob.core.generators`): functions which all dynamically generate code for the client generator
-7) __Database__ (`byob.core.database`): handles interaction between command & control server and the SQLite database
+7) __DAO__ (`byob.core.dao`): handles interaction between command & control server and the SQLite database
 8) __Handler__ (`byob.core.handler`): HTTP POST request handler for remote file uploads to the server
 
 ________________________________________________________________________________________________
@@ -138,12 +131,3 @@ ________________________________________________________________________________
 1) __Remote Import Encryption__ - encryption for data streams of packages/modules being remotely imported (to maintain confidentiality/authenticity/integrity and prevent any remote code execution vulnerabilities arising from deserialization)
 2) __Transport Types__ - add support for more transport types (HTTP/S, DNS, etc.)
 3) __Bug Fixes__ - fix any bugs/issues
-________________________________________________________________________________________________
-
-### Contact
-
-__Website__: https://buildyourownbotnet.com
-
-__Email__: security@malwared.com
-
-__Twitter__: [![twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/malwaredllc)
