@@ -21,6 +21,6 @@ notifications:
 deploy:
   provider: heroku
   api_key:
-    secure: "a87760a1-7987-4380-9c9e-20c416d658f6"
+    secure: a87760a1-7987-4380-9c9e-20c416d658f6
   app: iamrocketman
   run: python3 web-gui/run.py
